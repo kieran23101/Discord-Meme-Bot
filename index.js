@@ -1,7 +1,8 @@
+require('dotenv').config()
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const puppeteer = require('puppeteer');
-
+var FetchStream = require("fetch").FetchStream;
 
 client.once('ready', () => {
     console.log('Bot is starting to watch messages!');
@@ -39,12 +40,11 @@ client.on('message', message => {
         }
     }
     if (message.content === "!insult") {
-        fetch('https://insult.mattbas.org/api/insult').then(function (response) {
-            // The API call was successful!
-            message.channel.send(response);
-        }).catch(function (err) {
-            // There was an error
-            console.warn('Something went wrong.', err);
+        var fetchUrl = require("fetch").fetchUrl;
+        // source file is iso-8859-15 but it is converted to utf-8 automatically
+        fetchUrl("https://evilinsult.com/generate_insult.php?lang=en", function (error, meta, body) {
+            message.channel.send(body.toString());
         });
+
     }
 });
