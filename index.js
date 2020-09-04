@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require("./config.json");
 const puppeteer = require('puppeteer');
 
 
@@ -8,7 +7,7 @@ client.once('ready', () => {
     console.log('Bot is starting to watch messages!');
 });
 
-client.login(config.token);
+client.login(process.env.BOT_TOKEN);
 
 function GetImageID(Url) {
     var firstPart = Url.replace("https://preview.redd.it/", "");
@@ -18,7 +17,6 @@ function GetImageID(Url) {
 client.on('message', message => {
     if (message.content === '!meme') {
         message.channel.send("Fetching a meme for " + message.member.displayName + ", one moment!");
-        message.client.nam
         try {
             (async () => {
                 const browser = await puppeteer.launch({ headless: true });
