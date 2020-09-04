@@ -19,7 +19,12 @@ client.on('message', message => {
         message.channel.send("Fetching a meme for " + message.member.displayName + ", one moment!");
         try {
             (async () => {
-                const browser = await puppeteer.launch({ headless: true });
+                const browser = await puppeteer.launch({
+                    args: [
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                    ],
+                });
                 const page = await browser.newPage();
                 await page.goto('https://www.reddit.com/r/dankmemes/new/');
                 const images = await page.$$eval('img[alt=\"Post image\"].media-element.ImageBox-image', anchors => [].map.call(anchors, img => img.src));
