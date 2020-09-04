@@ -28,7 +28,7 @@ client.on('message', message => {
                 const page = await browser.newPage();
                 await page.goto('https://www.reddit.com/r/dankmemes/new/');
                 const images = await page.$$eval('img[alt=\"Post image\"].media-element.ImageBox-image', anchors => [].map.call(anchors, img => img.src));
-                console.log(images);
+                // console.log(images);
                 message.channel.send(GetImageID(images[0]));
                 await browser.close();
 
