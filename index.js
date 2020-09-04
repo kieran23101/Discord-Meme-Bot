@@ -38,4 +38,13 @@ client.on('message', message => {
             console.log(Ex);
         }
     }
+    if (message.content === "!insult") {
+        fetch('https://insult.mattbas.org/api/insult').then(function (response) {
+            // The API call was successful!
+            message.channel.send(response);
+        }).catch(function (err) {
+            // There was an error
+            console.warn('Something went wrong.', err);
+        });
+    }
 });
