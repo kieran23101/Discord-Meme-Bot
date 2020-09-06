@@ -33,12 +33,12 @@ client.on('message', message => {
         }
     }
 
-    if (message.content.toLowerCase().startsWith("!clear")) {
-        async function clear() {
-            message.delete();
-            const fetched = await message.channel.messages.fetch({ limit: 99 });
-            message.channel.bulkDelete(fetched);
-        }
-        clear();
-    }
+    // if (message.content.toLowerCase().startsWith("!clear")) {
+    //     async function clear() {
+    //         message.delete();
+    //         const fetched = await message.channel.messages.fetch({ limit: 99 });
+    //         message.channel.bulkDelete(fetched);
+    //     }
+    //     clear();
+    // }
 });
